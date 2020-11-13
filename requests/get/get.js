@@ -1,0 +1,17 @@
+const router = require('express').Router();
+const Medicament = require('../../model/Medicament');
+const verify = require('../../routes/verifyToken');
+
+//! Get all user medicament
+router.get('/getUserMedicaments', verify, (req, res) => {
+    //! get medicament
+        try {
+            Medicament.find({userID: req.header('id')}).then(function getMed(result) {
+                res.status(200).send({medicaments: result});
+            });
+        } catch (error) {
+            res.status(400).send({ error: error });
+        }
+});
+
+module.exports = router;
