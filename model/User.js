@@ -71,7 +71,15 @@ const userSchema = new mongoose.Schema({
     }, 
     role: {
         type: String,
-        required:true,
+        required: false,
+    },
+    hArray: {
+        type: [],
+        required: false,
+    },
+    oArray: {
+        type: [],
+        required: false,
     }
 });
 

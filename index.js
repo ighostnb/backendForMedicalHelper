@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors');
 
 //! Import routes
 const authRoute = require('./routes/auth');
@@ -13,31 +14,15 @@ const deleteRoute = require('./requests/delete/delete');
 dotenv.config();
 
 //! Connect to database
-
-// var connect = false;
-
 mongoose.connect(
     process.env.DB_CONNECT,
     { useNewUrlParser: true },
-    () => {
-        // connect = true;
-        console.log('DB connect');
-    }
+    () => console.log('DB connect')
 );
-// while (connect == false) {
-//     mongoose.connect(
-//         process.env.DB_CONNECT,
-//         { useNewUrlParser: true },
-//         () => {
-//             connect = true;
-//             console.log('DB connect');
-//         }
-//     );   
-// }
-
 
 //! Middleware
 app.use(express.json());
+app.use(cors());
 
 //! Route middleware
 app.use('/api/user', authRoute);

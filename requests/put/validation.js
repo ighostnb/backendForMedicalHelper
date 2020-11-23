@@ -13,7 +13,7 @@ const addInfoValidation = data => {
             .min(1)
             .max(100),
         age: Joi.string()
-            .min(1)
+            .min(1  )
             .max(3),
         bloodGroup: Joi.string()
             .min(2)
